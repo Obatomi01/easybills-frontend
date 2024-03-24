@@ -19,10 +19,10 @@ export default function SignUpHeader({}: Props) {
         </Link>
         <div className={styles['links--container']}>
           <Link href={'/support/get-help'}>
-            <h2>Need help?</h2>
+            <h2 className='font-semibold'>Need help?</h2>
           </Link>
           <Link href={'/contact-us'}>
-            <h2>Contact</h2>
+            <h2 className='font-semibold'>Contact</h2>
           </Link>
         </div>
       </section>
