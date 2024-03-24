@@ -1,0 +1,59 @@
+@import './variable';
+
+.success--page__container {
+  max-height: 100vh;
+  display: flex;
+
+  .main--contents {
+    width: 50%;
+    margin: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    .icons--container {
+      width: 30%;
+      height: 8rem;
+
+      position: relative;
+      margin: auto;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      margin-bottom: $large--space;
+
+      img {
+        width: 5rem;
+        height: 5rem;
+
+        filter: invert(90%) sepia(2%) saturate(7478%) hue-rotate(11deg)
+          brightness(85%) contrast(67%);
+      }
+
+      .check {
+        z-index: -1;
+        position: relative;
+      }
+
+      .money {
+        position: absolute;
+        bottom: 0;
+
+        z-index: 3;
+      }
+    }
+  }
+}
+
+// * below 768px //
+@media (max-width: 48em) {
+  .success--page__container {
+    flex-direction: column;
+
+    .main--contents {
+      margin-top: $extra--largest__space;
+    }
+  }
+}

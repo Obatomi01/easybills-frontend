@@ -1,0 +1,74 @@
+// * COLORS
+$grey--color: #e0e0e0;
+$light--grey__color: #f7f7f7;
+
+$primary--color: #f5f3bb;
+$lighter--shade: #fefdd7;
+$slighter--darker__shade: #ece9a2;
+$darker--shade: #cbc690;
+$darkest--shade: #b0af70;
+
+$complementary--color: #bbbcf5;
+$complementary--colour__deep: #8c8dbd;
+$complementary--colour__light: #d3d4ff;
+
+$analogous--color__1: #f3bbf5;
+$analogous--colour__1_deep: '#d387e4';
+$analogous--colour__1_light: '#facdff ';
+
+$analogous--color__2: #bbf5f3;
+$analogous--colour__2_light: #d3faf9;
+$analogous--colour__2_deep: #a7eaea;
+
+// * CONTAINER
+$container--width: 120rem;
+
+// * FONT SIZES
+$smallest--font: 1rem;
+$smaller--font: 1.2rem;
+$small--font: 1.4rem;
+
+$medium--font: 1.6rem;
+$large--medium__font: 1.8rem;
+$larger--medium__font: 2rem;
+
+$biggest--font: 6.2rem;
+$bigger--font: 5.2rem;
+$big--font: 4.4rem;
+
+$biggest--normal__font: 3.6rem;
+$bigger--normal__font: 3rem;
+$big--normal__font: 2.4rem;
+
+$extra--large__font: 7.4rem;
+$extra--larger__font: 8.6rem;
+$extra--largest__font: 9.8rem;
+
+// * SPACES
+$smallest--space: 0.2rem;
+$smaller--space: 0.4rem;
+$small--space: 0.8rem;
+
+$medium--space: 1.2rem;
+$larger--medium__space: 1.6rem;
+$largest--medium__space: 2.4rem;
+
+$large--space: 3.2rem;
+$larger--space: 4.8rem;
+$largest--space: 6.4rem;
+
+$extra--space: 8rem;
+$extra--larger__space: 9.6rem;
+$extra--largest__space: 12.8rem;
+
+@mixin next--btn {
+  background-color: $darkest--shade;
+  width: 100%;
+
+  border-radius: 8px;
+  padding-block: $medium--space;
+
+  h3 {
+    color: #fff;
+  }
+}

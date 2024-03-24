@@ -1,0 +1,67 @@
+@import './variable';
+
+.settings__container {
+  display: flex;
+  max-height: 100vh;
+
+  .settings--options {
+    width: 50%;
+    margin-inline: auto;
+    margin-top: $extra--space;
+
+    display: flex;
+    flex-direction: column;
+    gap: $medium--space;
+
+    .settings--option {
+      background-color: $darker--shade;
+      width: 100%;
+      border-radius: 12px;
+
+      padding: $medium--space;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .text--container {
+        display: flex;
+        flex-direction: column;
+        gap: $small--space;
+
+        h5 {
+          color: #777;
+        }
+      }
+
+      img {
+        width: 3rem;
+        height: 3rem;
+        filter: invert(31%) sepia(11%) saturate(5%) hue-rotate(337deg)
+          brightness(95%) contrast(85%);
+      }
+    }
+  }
+}
+
+// * below 768px //
+@media (max-width: 48em) {
+  .settings__container {
+    flex-direction: column;
+
+    .settings--options {
+      width: 80%;
+
+      margin-top: $medium--space;
+    }
+  }
+}
+
+// * below 500px //
+@media (max-width: 32em) {
+  .settings__container {
+    .settings--options {
+      width: 95%;
+    }
+  }
+}

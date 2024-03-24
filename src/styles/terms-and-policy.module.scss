@@ -1,0 +1,27 @@
+@import './variable';
+
+.policy--container {
+  opacity: 0;
+
+  padding-top: $largest--space;
+  max-width: 80rem;
+  margin: auto;
+  margin-bottom: $extra--largest__space;
+
+  position: relative;
+  z-index: -3;
+}
+
+// * below 700px //
+@media (max-width: 50em) {
+  .policy--container {
+    max-width: 50rem;
+  }
+}
+
+// * below 500px //
+@media (max-width: 32em) {
+  .policy--container {
+    max-width: 90%;
+  }
+}

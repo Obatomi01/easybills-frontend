@@ -1,0 +1,145 @@
+@import './variable';
+
+.enter--amount__container {
+  max-height: 100vh;
+  display: flex;
+
+  .main--contents {
+    overflow-y: auto;
+
+    width: 70%;
+    margin: auto;
+
+    height: 80vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding-inline: $extra--largest__space;
+    padding-block: $large--space;
+
+    .page--title {
+      background-color: $darkest--shade;
+      border-radius: 8px;
+
+      margin-bottom: $larger--space;
+      padding-block: $medium--space;
+
+      h3 {
+        color: #fff;
+      }
+    }
+
+    input {
+      outline: none;
+
+      font-size: $medium--font;
+    }
+
+    .amount--container,
+    input {
+      border-bottom: 1px solid $darkest--shade;
+      width: 100%;
+    }
+
+    .amount--container {
+      display: flex;
+      padding-bottom: $medium--space;
+    }
+
+    .card--details {
+      display: flex;
+      flex-direction: column;
+
+      gap: $smaller--space;
+    }
+
+    .top--container {
+      display: flex;
+      justify-content: space-between;
+
+      .card--details {
+        &:nth-child(2) {
+          align-items: end;
+        }
+      }
+    }
+
+    h4,
+    h5 {
+      color: #fff;
+    }
+
+    .next--btn {
+      @include next--btn();
+    }
+  }
+}
+
+.receiver--card__container,
+.sender--card__container {
+  h4,
+  h5 {
+    color: #fff;
+  }
+  padding: $large--space;
+
+  height: 30vh;
+
+  width: 100%;
+
+  border-radius: 12px;
+
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.receiver--card__container {
+  background-color: #555;
+}
+
+.sender--card__container {
+  background-color: $darkest--shade;
+}
+
+// * below 1200px //
+@media (max-width: 75em) {
+  .enter--amount__container {
+    .main--contents {
+      width: 100%;
+    }
+  }
+}
+
+// * below 768px //
+@media (max-width: 48em) {
+  .enter--amount__container {
+    flex-direction: column;
+
+    .main--contents {
+      width: 80%;
+
+      overflow-y: unset;
+      height: max-content;
+      padding-inline: unset;
+
+      padding-top: unset;
+    }
+  }
+
+  .receiver--card__container,
+  .sender--card__container {
+    height: 20rem;
+  }
+}
+
+// * below 500px //
+@media (max-width: 32em) {
+  .enter--amount__container {
+    .main--contents {
+      width: 95%;
+    }
+  }
+}

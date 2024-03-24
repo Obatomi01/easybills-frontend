@@ -1,0 +1,243 @@
+@import './variable';
+
+.accounts--page__container {
+  display: flex;
+  max-height: 100vh;
+
+  .main--contents {
+    width: 50%;
+    margin: auto;
+
+    height: 90vh;
+
+    .account--menu__container {
+      margin-top: $large--space;
+
+      display: flex;
+      flex-direction: column;
+
+      gap: $medium--space;
+
+      .menu--option {
+        padding-inline: $medium--space;
+        border-radius: 8px;
+
+        background-color: $darker--shade;
+        height: 12vh;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        img {
+          width: 4rem;
+          height: 4rem;
+        }
+
+        .menu--icon {
+          filter: invert(34%) sepia(1%) saturate(368%) hue-rotate(342deg)
+            brightness(93%) contrast(90%);
+        }
+
+        .arrow--icon {
+          filter: invert(56%) sepia(0%) saturate(7500%) hue-rotate(70deg)
+            brightness(92%) contrast(114%);
+        }
+
+        .menu {
+          display: flex;
+          align-items: center;
+          gap: $larger--medium__space;
+
+          .menu--description {
+            display: flex;
+            flex-direction: column;
+            gap: $smaller--space;
+            justify-content: center;
+
+            h4 {
+              color: #555;
+            }
+
+            h5 {
+              color: #222;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.account--card__container {
+  width: 100%;
+  height: 25vh;
+
+  background-color: $darker--shade;
+  border-radius: 12px;
+
+  padding: $largest--medium__space;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  h4 {
+    color: #222;
+  }
+
+  h5 {
+    color: #555;
+  }
+
+  .card--details {
+    display: flex;
+    justify-content: space-between;
+
+    .card--detail {
+      display: flex;
+      flex-direction: column;
+      gap: $smaller--space;
+
+      &:nth-child(2) {
+        align-items: end;
+      }
+    }
+  }
+}
+
+.account--info__container {
+  display: flex;
+  max-height: 100vh;
+
+  .main--contents {
+    width: 50%;
+    margin: auto;
+
+    height: 95vh;
+    overflow-y: auto;
+
+    padding: $large--space;
+
+    .balance--details__container {
+      margin-top: $large--space;
+
+      display: flex;
+      flex-direction: column;
+      gap: $medium--space;
+
+      .balance--container {
+        background-color: $darker--shade;
+        padding: $larger--medium__space;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: $large--space;
+
+        border-radius: 12px;
+
+        .description--container {
+          display: flex;
+          flex-direction: column;
+
+          h5 {
+            color: #222;
+          }
+        }
+      }
+    }
+  }
+}
+
+.new--account__container {
+  display: flex;
+  max-height: 100vh;
+
+  .main--contents {
+    width: 50%;
+    margin: auto;
+
+    height: 95vh;
+    overflow-y: auto;
+
+    padding: $large--space;
+
+    .account--options {
+      display: flex;
+      flex-direction: column;
+      gap: $medium--space;
+
+      .account--option {
+        background-color: $darker--shade;
+        display: flex;
+        flex-direction: column;
+
+        padding: $medium--space;
+        gap: $smaller--space;
+
+        border-radius: 12px;
+      }
+    }
+  }
+}
+
+// * below 1200px //
+@media (max-width: 75em) {
+  .accounts--page__container {
+    .main--contents {
+      width: 65vw;
+    }
+  }
+
+  .account--info__container,
+  .new--account__container {
+    .main--contents {
+      width: 65vw;
+    }
+  }
+}
+
+// * below 768px //
+@media (max-width: 48em) {
+  .accounts--page__container {
+    flex-direction: column;
+
+    .main--contents {
+      width: 80%;
+      height: 100vh;
+    }
+  }
+
+  .account--info__container,
+  .new--account__container {
+    flex-direction: column;
+
+    max-height: unset;
+    .main--contents {
+      height: max-content;
+      width: 80vw;
+    }
+  }
+
+  .account--card__container {
+    height: 20rem;
+  }
+}
+
+// * below 500px //
+@media (max-width: 32em) {
+  .accounts--page__container {
+    .main--contents {
+      width: 95%;
+    }
+  }
+
+  .account--info__container,
+  .new--account__container {
+    .main--contents {
+      width: 95vw;
+      padding-inline: unset;
+    }
+  }
+}

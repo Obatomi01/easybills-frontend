@@ -1,0 +1,153 @@
+@import './variable';
+
+.send-money__container {
+  max-height: 100vh;
+  display: flex;
+
+  .main--contents {
+    width: 50%;
+    height: 80vh;
+    margin: auto;
+
+    position: relative;
+
+    .page--title {
+      background-color: $darkest--shade;
+      border-radius: 8px;
+
+      margin-bottom: $larger--space;
+      padding-block: $medium--space;
+
+      h3 {
+        color: #fff;
+      }
+    }
+
+    .chosen--bank {
+      border: 1px solid $grey--color;
+      border-radius: 10px;
+      padding-inline: $medium--space;
+
+      height: 6vh;
+
+      display: flex;
+      align-items: center;
+    }
+
+    .bank--options__container {
+      border: 1px solid $grey--color;
+      border-radius: 10px;
+
+      max-height: 35vh;
+      width: 100%;
+
+      padding-inline: $medium--space;
+
+      position: absolute;
+      background-color: $grey--color;
+
+      .options--header__container {
+        .options--header {
+          height: 6vh;
+
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          img {
+            width: 3rem;
+            height: 3rem;
+
+            cursor: pointer;
+          }
+        }
+
+        input {
+          width: 100%;
+          height: 5vh;
+          outline: none;
+
+          font-size: $medium--font;
+          margin-bottom: $medium--space;
+
+          border-bottom: 1px solid $darkest--shade;
+          background-color: $grey--color;
+
+          &::placeholder {
+            font-size: $medium--font;
+          }
+        }
+      }
+
+      .bank--options {
+        overflow-y: auto;
+        max-height: 20vh;
+
+        .bank--option {
+          height: 5vh;
+
+          display: flex;
+          align-items: center;
+
+          // padding-inline: $medium--space;
+
+          border-block: 1px solid $darkest--shade;
+        }
+      }
+    }
+
+    .account--input {
+      input {
+        width: 100%;
+
+        outline: none;
+
+        font-size: $medium--font;
+
+        &::placeholder {
+          font-size: $medium--font;
+        }
+      }
+    }
+
+    .account--output,
+    .account--input {
+      border: 1px solid $grey--color;
+      height: 7vh;
+
+      padding-inline: $medium--space;
+      margin-block: $medium--space;
+
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .next--btn {
+      @include next--btn();
+    }
+  }
+}
+
+// * below 768px //
+@media (max-width: 48em) {
+  .send-money__container {
+    flex-direction: column;
+
+    height: 100vh;
+
+    .main--contents {
+      width: 70%;
+      margin-block: unset;
+    }
+  }
+}
+
+// * below 500px //
+@media (max-width: 32em) {
+  .send-money__container {
+    .main--contents {
+      width: 95%;
+    }
+  }
+}

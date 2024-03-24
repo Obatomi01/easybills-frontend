@@ -1,0 +1,32 @@
+@import './variable';
+
+.page--container {
+  display: flex;
+
+  .main--contents {
+    margin: auto;
+    width: 70vw;
+  }
+}
+
+// * below 768px //
+@media (max-width: 48em) {
+  .page--container {
+    flex-direction: column;
+
+    .main--contents {
+      width: 80%;
+    }
+  }
+}
+
+// * below 500px //
+@media (max-width: 32em) {
+  .page--container {
+    flex-direction: column;
+
+    .main--contents {
+      width: 95%;
+    }
+  }
+}
