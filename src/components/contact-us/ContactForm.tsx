@@ -31,7 +31,7 @@ export default function ContactForm({}: Props) {
         <span className='text-amber-400'> Get in Touch</span>
       </h1>
       <p className='text-2xl mt-8 mb-12'>
-        Have inquiries or comments? Contact us, and we'll respond accordingly.
+        Have inquiries or comments? Contact us, and we will respond accordingly.
       </p>
       <Formik
         initialValues={{

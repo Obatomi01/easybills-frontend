@@ -33,10 +33,6 @@ type FormFeedback = {
 export default function ResetForgottenPassword({ changePassword }: Props) {
   const router = useRouter();
 
-  if (changePassword) {
-    useClientIsLoggedIn();
-  }
-
   const searchParams = useSearchParams();
   const token = searchParams.get('token');
 
