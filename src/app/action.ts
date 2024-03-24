@@ -7,7 +7,7 @@ export async function navigateUser(val: any) {
   cookies().set('isLoggedIn', 'true');
   cookies().set('token', val.token);
 
-  redirect('/dashboard');
+  // redirect('/dashboard');
 }
 
 // export async function deleteUserCookies() {

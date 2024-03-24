@@ -5,6 +5,8 @@ import React from 'react';
 import { useState, useTransition } from 'react';
 import Image from 'next/image';
 
+import { useRouter } from 'next/navigation';
+
 import Link from 'next/link';
 
 import { navigateUser } from '@/app/action';
@@ -26,6 +28,8 @@ type FormFeedback = {
 };
 
 export default function LoginFormContainer({}: Props) {
+  const router = useRouter();
+
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -96,6 +100,7 @@ export default function LoginFormContainer({}: Props) {
                 };
 
                 await navigateUser(userDetails);
+                router.push('/dashboard');
               } else {
                 setFormFeedback({
                   message: 'Incorrect details!',
