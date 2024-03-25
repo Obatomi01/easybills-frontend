@@ -29,5 +29,5 @@ export function useResetCookies() {
   useSWR('reset--cookie', fetcher);
   useEffect(() => {
     router.refresh();
-  }, [router]);
+  }, []);
 }
