@@ -4,6 +4,7 @@ import React from 'react';
 
 import { useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
+import { setCookie } from 'cookies-next';
 
 import Link from 'next/link';
 import Image from 'next/image';
@@ -112,7 +113,8 @@ export default function SignUpFormContainer({}: Props) {
                   ok: true,
                   showFeedback: true,
                 });
-                await navigateUser(data);
+                setCookie('isLoggedIn', 'true');
+                setCookie('token', data.token);
                 router.push('/dashboard');
               } else {
                 setFormFeedback({
