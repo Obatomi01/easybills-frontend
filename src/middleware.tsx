@@ -6,7 +6,7 @@ export function middleware(request: NextRequest) {
   const url = request.nextUrl;
 
   const protectedRoutes = [
-    // 'dashboard',
+    'dashboard',
     'cards',
     'get-support',
     'settings',

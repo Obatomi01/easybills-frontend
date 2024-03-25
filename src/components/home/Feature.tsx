@@ -31,8 +31,8 @@ export default function Feature({ imgSrc, description, featureTitle }: Props) {
         ref={descriptionContainer}
       >
         <Fade bottom>
-          <h2 className='text-5xl font-medium '>{featureTitle}</h2>
-          <p className='text-3xl font-thin'>{description}</p>
+          <h2 className='text-5xl font-medium'>{featureTitle}</h2>
+          <p className='text-3xl font-medium'>{description}</p>
         </Fade>
       </div>
     </div>
