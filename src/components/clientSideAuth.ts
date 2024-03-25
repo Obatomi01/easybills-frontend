@@ -15,10 +15,11 @@ export function useClientIsLoggedIn() {
     if (!isLoggedIn) {
       router.push('/login');
     }
-  }, [router]);
+  }, [router, isLoggedIn]);
 }
 
 export function useResetCookies() {
+  const router = useRouter();
   const fetcher = async () => {
     await fetch(`${process.env.NEXT_PUBLIC_APP_LINK}/api/login`, {
       cache: 'no-store',
@@ -26,4 +27,7 @@ export function useResetCookies() {
   };
 
   useSWR('reset--cookie', fetcher);
+  useEffect(() => {
+    router.refresh();
+  }, [router]);
 }
