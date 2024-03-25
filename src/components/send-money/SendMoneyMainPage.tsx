@@ -72,7 +72,7 @@ export default function SendMoneyMainPage({ bankDetails, bankNames }: Props) {
     const value = event.target.value;
 
     const newBanks = bankNames.filter((el: string) =>
-      el.toLowerCase().includes(value)
+      el.toLowerCase().includes(value.toLowerCase())
     );
     setBanks(newBanks);
   };

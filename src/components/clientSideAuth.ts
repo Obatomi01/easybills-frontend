@@ -15,7 +15,7 @@ export function useClientIsLoggedIn() {
     if (!isLoggedIn) {
       router.push('/login');
     }
-    // router.refresh();
+    router.refresh();
   }, [isLoggedIn, router]);
 }
 
