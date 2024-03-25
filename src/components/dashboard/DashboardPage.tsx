@@ -23,7 +23,7 @@ type Props = {
 };
 
 export default function DashboardPage({ firstName }: Props) {
-  // useClientIsLoggedIn();
+  useClientIsLoggedIn();
 
   return (
     <section className={styles['dashboard--container']}>

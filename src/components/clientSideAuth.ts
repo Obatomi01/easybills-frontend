@@ -11,11 +11,9 @@ export function useClientIsLoggedIn() {
   const router = useRouter();
   const isLoggedIn = getCookie('isLoggedIn');
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      router.push('/login');
-    }
-  }, [isLoggedIn, router]);
+  if (!isLoggedIn) {
+    router.push('/login');
+  }
 }
 
 export function useResetCookies() {
