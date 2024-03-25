@@ -3,6 +3,7 @@
 import React from 'react';
 
 import { useState, useTransition } from 'react';
+import { useRouter } from 'next/navigation';
 
 import Link from 'next/link';
 import Image from 'next/image';
@@ -26,6 +27,8 @@ type FormFeedback = {
 };
 
 export default function SignUpFormContainer({}: Props) {
+  const router = useRouter();
+
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -110,6 +113,7 @@ export default function SignUpFormContainer({}: Props) {
                   showFeedback: true,
                 });
                 await navigateUser(data);
+                router.push('/dashboard');
               } else {
                 setFormFeedback({
                   message: 'User with the email exists.',

@@ -22,7 +22,7 @@ export default async function Dashboard({}: Props) {
   // const firstName = cookies().get('firstName');
   // const lastName = cookies().get('lastName');
 
-  const { firstName } = await userDetails();
+  // const { firstName } = await userDetails();
   // const isLoggedIn = cookies().get('isLoggedIn');
 
   // if (!isLoggedIn) {
@@ -31,7 +31,7 @@ export default async function Dashboard({}: Props) {
 
   return (
     <main>
-      <DashboardPage firstName={firstName} />
+      <DashboardPage firstName={'firstName'} />
     </main>
   );
 }

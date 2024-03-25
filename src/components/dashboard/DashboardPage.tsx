@@ -23,12 +23,7 @@ type Props = {
 };
 
 export default function DashboardPage({ firstName }: Props) {
-  const router = useRouter();
-  useClientIsLoggedIn();
-
-  useEffect(() => {
-    router.refresh();
-  }, [router]);
+  // useClientIsLoggedIn();
 
   return (
     <section className={styles['dashboard--container']}>
