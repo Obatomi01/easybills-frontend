@@ -8,6 +8,7 @@ import Image from 'next/image';
 import styles from '@/styles/general.module.scss';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 import DashboardIcon from '@/../public/icon/dashboard.png';
 import CardsIcon from '@/../public/icon/credit-card.png';
@@ -56,15 +57,16 @@ const menuOptions: linkProps[] = [
     imgSrc: SettingIcon,
     title: 'Settings',
   },
-  {
-    linkTo: '/login',
-    imgSrc: LogoutIcon,
-    title: 'Logout',
-  },
+  // {
+  //   linkTo: '/login',
+  //   imgSrc: LogoutIcon,
+  //   title: 'Logout',
+  // },
 ];
 
 export default function DashboardMenu({}: Props) {
   const [showNavBar, setShowNavBar] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     if (showNavBar) {
@@ -157,6 +159,19 @@ export default function DashboardMenu({}: Props) {
                 </div>
               </Link>
             ))}
+            <div
+              className={styles['menu--option']}
+              onClick={() => {
+                router.replace('/login');
+              }}
+            >
+              <span className={styles['image--container']}>
+                <Image src={LogoutIcon} alt='icon' />
+              </span>
+              <span className={styles['text--container']}>
+                <h4 className='text-3xl'>Logout</h4>
+              </span>
+            </div>
           </div>
         </div>
       </div>

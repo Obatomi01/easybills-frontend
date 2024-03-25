@@ -37,7 +37,7 @@ export default function OtherPagesHero({
   return (
     <section className={styles['hero--container']}>
       <div className={styles['description--container']} ref={heroDescription}>
-        <h1 className='text-6xl md:text-7xl font-bold'>
+        <h1 className='text-5xl md:text-7xl font-bold'>
           {blackDescriptionText}
           <span className='text-amber-400'>{colouredDescriptionText}</span>
         </h1>
