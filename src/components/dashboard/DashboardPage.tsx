@@ -14,10 +14,7 @@ import DashboardHeader from './DashboardHeader';
 import News from './News';
 import DetailCard from './DetailCard';
 
-import {
-  useCheckClientIsLoggedIn,
-  useClientIsLoggedIn,
-} from '../clientSideAuth';
+import { useClientIsLoggedIn } from '../clientSideAuth';
 
 import FavouriteOptions from './FavouriteOptions';
 
@@ -28,6 +25,7 @@ type Props = {
 export default function DashboardPage({ firstName }: Props) {
   useClientIsLoggedIn();
   // useCheckClientIsLoggedIn();
+  // console.log('Ran again');
 
   return (
     <section className={styles['dashboard--container']}>

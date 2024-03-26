@@ -13,22 +13,22 @@ export function useClientIsLoggedIn() {
 
   useEffect(() => {
     if (!isLoggedIn) {
-      router.replace('/login');
+      router.push('/login');
     }
-  }, [router, isLoggedIn]);
+  }, [isLoggedIn, router]);
 }
 
-export function useCheckClientIsLoggedIn() {
-  const router = useRouter();
-  const fetcher = async () => {
-    await fetch(`${process.env.NEXT_PUBLIC_APP_LINK}/api/auth-user`, {
-      cache: 'no-store',
-    });
-  };
+// export function useCheckClientIsLoggedIn() {
+//   const router = useRouter();
+//   const fetcher = async () => {
+//     await fetch(`${process.env.NEXT_PUBLIC_APP_LINK}/api/auth-user`, {
+//       cache: 'no-store',
+//     });
+//   };
 
-  const { data, error, isLoading } = useSWR([router], fetcher);
-  console.log(data);
-}
+//   const { data, error, isLoading } = useSWR([router], fetcher);
+//   console.log(data);
+// }
 
 export function useResetCookies() {
   const fetcher = async () => {

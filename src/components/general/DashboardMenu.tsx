@@ -57,11 +57,11 @@ const menuOptions: linkProps[] = [
     imgSrc: SettingIcon,
     title: 'Settings',
   },
-  // {
-  //   linkTo: '/login',
-  //   imgSrc: LogoutIcon,
-  //   title: 'Logout',
-  // },
+  {
+    linkTo: '/login',
+    imgSrc: LogoutIcon,
+    title: 'Logout',
+  },
 ];
 
 export default function DashboardMenu({}: Props) {
@@ -159,10 +159,10 @@ export default function DashboardMenu({}: Props) {
                 </div>
               </Link>
             ))}
-            <div
+            {/* <div
               className={styles['menu--option']}
               onClick={() => {
-                router.replace('/login');
+                router.push('/login');
               }}
             >
               <span className={styles['image--container']}>
@@ -171,7 +171,7 @@ export default function DashboardMenu({}: Props) {
               <span className={styles['text--container']}>
                 <h4 className='text-3xl'>Logout</h4>
               </span>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
