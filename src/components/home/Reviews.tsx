@@ -88,7 +88,7 @@ export default function Reviews({}: Props) {
           height: '4rem',
           right: '0%',
           left: '0%',
-          zIndex: '999',
+          zIndex: '1',
         }}
         onClick={onClick}
         className={`${className} ${styles['prev--arrow']}`}
