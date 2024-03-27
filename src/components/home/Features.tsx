@@ -27,26 +27,31 @@ export default function Features({}: Props) {
           imgSrc={BillManagement}
           description='Efficiently manage all bills in one place. Track, organize, and schedule payments for utilities, subscriptions, rent, and more, ensuring timely settlement.'
           featureTitle='Bills Management'
+          featureCategory='Bills'
         />
         <Feature
           imgSrc={MultipleMethods}
           description='Enjoy flexibility with various payment options. Pay bills using credit/debit cards, bank transfers, digital wallets, or other preferred payment methods.'
           featureTitle='Multiple Payment Methods'
+          featureCategory='Payment'
         />
         <Feature
           imgSrc={SecuredTransaction}
           description='Ensure secure transactions. Benefit from encrypted connections and robust security measures, safeguarding personal and financial information.'
           featureTitle='Secure Transactions'
+          featureCategory='Security'
         />
         <Feature
           imgSrc={CustomerService}
           description='Receive prompt assistance. Access customer support services to address queries, resolve issues, or seek guidance on bill-related matters.'
           featureTitle='Customer Support Assistance'
+          featureCategory='Support'
         />
         <Feature
           imgSrc={Integration}
           description='Seamless integration with bank accounts. Link accounts for direct payments, transaction syncing, and real-time balance updates for improved financial control.'
           featureTitle='Integration with Bank Accounts'
+          featureCategory='Banking'
         />
       </div>
     </section>

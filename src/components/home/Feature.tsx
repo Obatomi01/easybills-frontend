@@ -12,9 +12,15 @@ type Props = {
   imgSrc: any;
   description: string;
   featureTitle: string;
+  featureCategory: string;
 };
 
-export default function Feature({ imgSrc, description, featureTitle }: Props) {
+export default function Feature({
+  imgSrc,
+  description,
+  featureTitle,
+  featureCategory,
+}: Props) {
   const descriptionContainer = useRef<any>();
 
   useEffect(() => {
@@ -23,15 +29,18 @@ export default function Feature({ imgSrc, description, featureTitle }: Props) {
 
   return (
     <div className={styles['feature--container']}>
-      <div className={styles['image--container']}>
+      {/* <div className={styles['image--container']}>
         <Image src={imgSrc} alt='feature' />
-      </div>
+      </div> */}
       <div
         className={styles['description--container']}
         ref={descriptionContainer}
       >
         <Fade bottom>
-          <h2 className='text-5xl font-medium'>{featureTitle}</h2>
+          <span className={styles['heading']}>
+            <p className='text-2xl font-bold'>{featureCategory}</p>
+          </span>
+          <h5 className='text-4xl font-semibold'>{featureTitle}</h5>
           <p className='text-2xl font-medium'>{description}</p>
         </Fade>
       </div>
