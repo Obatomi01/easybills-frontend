@@ -76,7 +76,7 @@ export default function Workers({}: Props) {
     <section className={styles['workers--container']}>
       <div className={styles['description--container']}>
         <Bounce top>
-          <h2 className='text-7xl font-bold mb-10'>
+          <h2 className='text-5xl md:text-7xl font-bold mb-10'>
             Our <span className='text-amber-400'>Team</span>
           </h2>
         </Bounce>

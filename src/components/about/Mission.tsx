@@ -33,7 +33,7 @@ export default function Mission({}: Props) {
     <section className={styles['mission--container']}>
       <Image src={MissionsImage} alt='mission' ref={imageContainer} />
       <div className={styles['description--container']} ref={textContainer}>
-        <h2 className='text-7xl font-bold mb-10'>
+        <h2 className='text-5xl md:text-7xl font-bold mb-10'>
           Our <span className='text-amber-400'>Missions</span>
         </h2>
         <p className='text-3xl leading-10 mb-5'>
