@@ -22,6 +22,7 @@ import { useClientIsLoggedIn } from '../clientSideAuth';
 
 type Props = {
   changePassword?: boolean;
+  changePin?: boolean;
 };
 
 type FormFeedback = {
@@ -82,6 +83,8 @@ export default function ResetForgottenPassword({ changePassword }: Props) {
       .oneOf([Yup.ref('password'), undefined], 'Passwords must match')
       .required('Confirm Password is required'),
   });
+
+  // TODO: add another schema for when it is a request to reset the user's pin
 
   return (
     <section className={changePassword ? styles['change--password__page'] : ''}>

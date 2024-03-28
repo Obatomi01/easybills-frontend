@@ -27,7 +27,7 @@ const settingsOptions: SettingOptions[] = [
   {
     title: 'Pin Management',
     description: 'Change Transaction Pin Management',
-    linkTo: '',
+    linkTo: '/settings/check-password?pin=true',
   },
   {
     title: 'Security Questions',

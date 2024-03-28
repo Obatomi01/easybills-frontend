@@ -97,6 +97,8 @@ export default function CheckPassword({}: Props) {
                     showFeedback: true,
                   });
 
+                  // TODO: check if it is to reset the pin by checking if there is a query of 'pin'
+
                   router.push(`/settings/change-password?token=${data.token}`);
                 } else {
                   setFormFeedback({

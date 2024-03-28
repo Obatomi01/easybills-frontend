@@ -143,7 +143,7 @@ export default function DashboardMenu({}: Props) {
             />
           </div>
           <div className={styles['menu--container']}>
-            {menuOptions.map((el: linkProps, index: number) => (
+            {menuOptions.slice(0, -1).map((el: linkProps, index: number) => (
               <Link
                 href={el.linkTo}
                 key={index}
@@ -159,10 +159,15 @@ export default function DashboardMenu({}: Props) {
                 </div>
               </Link>
             ))}
-            {/* <div
+            <div
               className={styles['menu--option']}
               onClick={() => {
-                router.push('/login');
+                setShowNavBar(false);
+                router.refresh();
+
+                setTimeout(() => {
+                  router.push('/login');
+                }, 2000);
               }}
             >
               <span className={styles['image--container']}>
@@ -171,7 +176,7 @@ export default function DashboardMenu({}: Props) {
               <span className={styles['text--container']}>
                 <h4 className='text-3xl'>Logout</h4>
               </span>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>
