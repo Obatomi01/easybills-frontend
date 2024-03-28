@@ -9,6 +9,7 @@ import styles from '@/styles/general.module.scss';
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { deleteCookie } from 'cookies-next';
 
 import DashboardIcon from '@/../public/icon/dashboard.png';
 import CardsIcon from '@/../public/icon/credit-card.png';
@@ -162,7 +163,11 @@ export default function DashboardMenu({}: Props) {
             <div
               className={styles['menu--option']}
               onClick={() => {
+                deleteCookie('token');
+                deleteCookie('isLoggedIn');
+
                 setShowNavBar(false);
+
                 router.refresh();
 
                 setTimeout(() => {
