@@ -16,6 +16,8 @@ export function useClientIsLoggedIn() {
       router.push('/login');
     }
   }, [isLoggedIn, router]);
+
+  // return { isLoggedIn };
 }
 
 // export function useCheckClientIsLoggedIn() {

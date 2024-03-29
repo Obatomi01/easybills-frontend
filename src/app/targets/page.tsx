@@ -1,6 +1,7 @@
 import React from 'react';
 
 import GoalsMainPage from '@/components/targets/GoalsMainPage';
+import AuthUser from '@/components/AuthUser';
 
 type Props = {};
 

@@ -1,3 +1,4 @@
+import AuthUser from '@/components/AuthUser';
 import ConfirmPinMoneyTransfer from '@/components/send-money/enter-amount/confirm-pin/ConfirmPinMoneyTransfer';
 import React from 'react';
 

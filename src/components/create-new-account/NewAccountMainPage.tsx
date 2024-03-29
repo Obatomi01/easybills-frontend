@@ -6,6 +6,11 @@ import styles from '@/styles/accounts.module.scss';
 import DashboardMenu from '../general/DashboardMenu';
 import { useClientIsLoggedIn } from '../clientSideAuth';
 
+import { getCookie } from 'cookies-next';
+
+import { useRouter } from 'next/navigation';
+import LoginPage from '../login/LoginPage';
+
 type Props = {};
 
 type NewAccountOptions = {
@@ -39,7 +44,13 @@ const newAccountOptions: NewAccountOptions[] = [
 ];
 
 export default function NewAccountMainPage({}: Props) {
-  useClientIsLoggedIn();
+  const router = useRouter();
+  const isLoggedIn = getCookie('isLoggedIn');
+
+  if (!isLoggedIn) {
+    // router.push('/login');
+    return <LoginPage />;
+  }
 
   return (
     <section className={styles['new--account__container']}>

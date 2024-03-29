@@ -1,3 +1,4 @@
+import AuthUser from '@/components/AuthUser';
 import NewAccountMainPage from '@/components/create-new-account/NewAccountMainPage';
 import React from 'react';
 

@@ -3,6 +3,10 @@
 import React from 'react';
 import DashboardMenu from '../general/DashboardMenu';
 
+import { getCookie } from 'cookies-next';
+
+import { useRouter } from 'next/navigation';
+
 import styles from '@/styles/cards.module.scss';
 import CardContainer from './CardContainer';
 import { useClientIsLoggedIn } from '../clientSideAuth';
@@ -10,7 +14,17 @@ import { useClientIsLoggedIn } from '../clientSideAuth';
 type Props = {};
 
 export default function CardsMainPage({}: Props) {
-  useClientIsLoggedIn();
+  const router = useRouter();
+  const isLoggedIn = getCookie('isLoggedIn');
+
+  if (!isLoggedIn) {
+    // router.push('/login');
+    return (
+      <div>
+        <p>Unauthenticated User</p>
+      </div>
+    );
+  }
 
   return (
     <section className={styles['all--cards__container']}>

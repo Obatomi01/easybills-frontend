@@ -10,6 +10,8 @@ import { Formik, ErrorMessage } from 'formik';
 import styles from '@/styles/airtime-and-data.module.scss';
 
 import { useRouter } from 'next/navigation';
+import { getCookie } from 'cookies-next';
+
 import { useSearchParams } from 'next/navigation';
 
 import TransferReceiver from '../send-money/enter-amount/TransferReceiver';
@@ -18,11 +20,21 @@ import { useClientIsLoggedIn } from '../clientSideAuth';
 type Props = {};
 
 export default function ConfirmPinAirtime({}: Props) {
-  useClientIsLoggedIn();
+  const router = useRouter();
+  const isLoggedIn = getCookie('isLoggedIn');
+
   const [pin, setPin] = useState('');
 
-  const router = useRouter();
   const searchParams = useSearchParams();
+
+  if (!isLoggedIn) {
+    // router.push('/login');
+    return (
+      <div>
+        <p>Unauthenticated User</p>
+      </div>
+    );
+  }
 
   const phoneNumber = searchParams.get('phoneNumber');
   const amount = searchParams.get('amount');

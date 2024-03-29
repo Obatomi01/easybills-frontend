@@ -1,3 +1,4 @@
+import AuthUser from '@/components/AuthUser';
 import SuccessMainPage from '@/components/success/SuccessMainPage';
 import React from 'react';
 

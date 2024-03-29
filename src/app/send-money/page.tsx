@@ -1,3 +1,4 @@
+import AuthUser from '@/components/AuthUser';
 import SendMoneyMainPage from '@/components/send-money/SendMoneyMainPage';
 import React from 'react';
 

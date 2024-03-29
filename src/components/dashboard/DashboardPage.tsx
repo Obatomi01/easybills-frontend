@@ -14,6 +14,8 @@ import DashboardHeader from './DashboardHeader';
 import News from './News';
 import DetailCard from './DetailCard';
 
+import { getCookie } from 'cookies-next';
+
 import { useClientIsLoggedIn } from '../clientSideAuth';
 
 import FavouriteOptions from './FavouriteOptions';
@@ -23,9 +25,17 @@ type Props = {
 };
 
 export default function DashboardPage({ firstName }: Props) {
-  useClientIsLoggedIn();
-  // useCheckClientIsLoggedIn();
-  // console.log('Ran again');
+  const router = useRouter();
+  const isLoggedIn = getCookie('isLoggedIn');
+
+  if (!isLoggedIn) {
+    router.push('/login');
+    return (
+      <div>
+        <p>Unauthenticated User</p>
+      </div>
+    );
+  }
 
   return (
     <section className={styles['dashboard--container']}>

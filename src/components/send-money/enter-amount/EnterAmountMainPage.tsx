@@ -9,6 +9,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useRouter } from 'next/navigation';
 
 import styles from '@/styles/enter-amount.module.scss';
+import { getCookie } from 'cookies-next';
 
 import { useSearchParams } from 'next/navigation';
 import TransferReceiver from './TransferReceiver';
@@ -16,12 +17,20 @@ import DashboardMenu from '@/components/general/DashboardMenu';
 import TransferSender from './TransferSender';
 import TransferDetailsContainer from '../TransferDetailsContainer';
 import { useClientIsLoggedIn } from '@/components/clientSideAuth';
+import Login from '@/app/login/page';
 
 type Props = {};
 
 export default function EnterAmountMainPage({}: Props) {
   const searchParams = useSearchParams();
   useClientIsLoggedIn();
+
+  const router = useRouter();
+  const isLoggedIn = getCookie('isLoggedIn');
+
+  if (!isLoggedIn) {
+    return <Login />;
+  }
 
   const bank = searchParams.get('bank');
   const accountNumber = searchParams.get('accountNumber');

@@ -1,3 +1,4 @@
+import AuthUser from '@/components/AuthUser';
 import ChangePassword from '@/components/forgot-password/ChangePassword';
 
 import React from 'react';

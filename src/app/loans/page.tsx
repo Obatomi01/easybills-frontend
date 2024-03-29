@@ -1,3 +1,4 @@
+import AuthUser from '@/components/AuthUser';
 import LoansMainPage from '@/components/loans/LoansMainPage';
 import React from 'react';
 

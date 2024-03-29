@@ -4,6 +4,7 @@ import React from 'react';
 
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+import { getCookie } from 'cookies-next';
 
 import { useClientIsLoggedIn } from './clientSideAuth';
 
@@ -13,12 +14,16 @@ type Props = {
 
 export default function AuthUser({ children }: Props) {
   const router = useRouter();
-  useClientIsLoggedIn();
+  const isLoggedIn = getCookie('isLoggedIn');
 
-  useEffect(() => {
-    router.refresh();
-    console.log('refreshed');
-  }, [router]);
+  if (!isLoggedIn) {
+    router.push('/login');
+    return (
+      <div>
+        <p>Unauthenticated User</p>
+      </div>
+    );
+  }
 
   return <>{children}</>;
 }

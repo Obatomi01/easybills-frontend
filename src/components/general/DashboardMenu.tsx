@@ -168,8 +168,8 @@ export default function DashboardMenu({}: Props) {
 
                 setShowNavBar(false);
 
-                window.location.reload();
-                // router.refresh();
+                // window.location.reload();
+                router.refresh();
 
                 setTimeout(() => {
                   router.push('/login');

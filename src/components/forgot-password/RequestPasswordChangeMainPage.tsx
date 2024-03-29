@@ -14,6 +14,12 @@ import FormEntryContainer from '../general/FormEntryContainer';
 
 import Spinner from '@/../public/icon/spinner.png';
 
+import { getCookie } from 'cookies-next';
+
+import { useRouter } from 'next/navigation';
+import { useClientIsLoggedIn } from '../clientSideAuth';
+import LoginPage from '../login/LoginPage';
+
 type Props = {};
 
 type FormFeedback = {
@@ -23,12 +29,20 @@ type FormFeedback = {
 };
 
 export default function RequestPasswordChangeMainPage({}: Props) {
+  const router = useRouter();
+  const isLoggedIn = getCookie('isLoggedIn');
+
   const [formFeedback, setFormFeedback] = useState<FormFeedback>({
     message: '',
     ok: false,
     showFeedback: false,
   });
   const [isPending, startTransition] = useTransition();
+
+  if (!isLoggedIn) {
+    // router.push('/login');
+    return <LoginPage />;
+  }
 
   const userSchema = Yup.object({
     email: Yup.string().email().required('Email is required'),

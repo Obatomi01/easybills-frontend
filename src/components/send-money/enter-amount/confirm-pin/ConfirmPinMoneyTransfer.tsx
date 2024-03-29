@@ -10,6 +10,9 @@ import DashboardMenu from '@/components/general/DashboardMenu';
 
 import TransferDetailsContainer from '../../TransferDetailsContainer';
 import { useClientIsLoggedIn } from '@/components/clientSideAuth';
+import Login from '@/app/login/page';
+
+import { getCookie } from 'cookies-next';
 
 type Props = {
   //   linkTo: string;
@@ -19,6 +22,12 @@ type Props = {
 export default function ConfirmPinMoneyTransfer({}: Props) {
   const searchParams = useSearchParams();
   useClientIsLoggedIn();
+
+  const isLoggedIn = getCookie('isLoggedIn');
+
+  if (!isLoggedIn) {
+    return <Login />;
+  }
 
   const amount = searchParams.get('amount');
 

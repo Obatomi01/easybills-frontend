@@ -1,3 +1,4 @@
+import AuthUser from '@/components/AuthUser';
 import SettingsMainPage from '@/components/settings/SettingsMainPage';
 import React from 'react';
 

@@ -3,6 +3,7 @@ import DashboardMenu from '@/components/general/DashboardMenu';
 import React from 'react';
 
 import styles from '@/styles/airtime-and-data.module.scss';
+import AuthUser from '@/components/AuthUser';
 
 type Props = {};
 

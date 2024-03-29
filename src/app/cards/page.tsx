@@ -1,3 +1,4 @@
+import AuthUser from '@/components/AuthUser';
 import CardsMainPage from '@/components/cards/CardsMainPage';
 import React from 'react';
 

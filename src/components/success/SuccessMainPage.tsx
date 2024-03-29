@@ -11,10 +11,23 @@ import Money from '@/../public/icon/banknotes.png';
 import Checked from '@/../public/icon/checked.png';
 import { useClientIsLoggedIn } from '../clientSideAuth';
 
+import { getCookie } from 'cookies-next';
+
+import { useRouter } from 'next/navigation';
+import Login from '@/app/login/page';
+import LoginPage from '../login/LoginPage';
+
 type Props = {};
 
 export default function SuccessMainPage({}: Props) {
   useClientIsLoggedIn();
+
+  const router = useRouter();
+  const isLoggedIn = getCookie('isLoggedIn');
+
+  if (!isLoggedIn) {
+    return <LoginPage />;
+  }
 
   return (
     <section className={styles['success--page__container']}>

@@ -1,3 +1,4 @@
+import AuthUser from '@/components/AuthUser';
 import StatementOfAccount from '@/components/accounts/StatementOfAccount';
 import React from 'react';
 

@@ -4,11 +4,17 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
+import { useRouter } from 'next/navigation';
+
 import styles from '@/styles/settings.module.scss';
 import DashboardMenu from '../general/DashboardMenu';
 import { useClientIsLoggedIn } from '../clientSideAuth';
 
+import { getCookie } from 'cookies-next';
+
 import ChevronRight from '@/../public/icon/chevron-right.png';
+import LoginPage from '../login/LoginPage';
+import Login from '@/app/login/page';
 
 type Props = {};
 
@@ -38,6 +44,13 @@ const settingsOptions: SettingOptions[] = [
 
 export default function SettingsMainPage({}: Props) {
   useClientIsLoggedIn();
+
+  const router = useRouter();
+  const isLoggedIn = getCookie('isLoggedIn');
+
+  if (!isLoggedIn) {
+    return <LoginPage />;
+  }
 
   return (
     <section className={styles['settings__container']}>

@@ -19,6 +19,7 @@ import FormEntryContainer from '../general/FormEntryContainer';
 
 import Spinner from '@/../public/icon/spinner.png';
 import { useClientIsLoggedIn } from '../clientSideAuth';
+import Login from '@/app/login/page';
 
 type Props = {};
 
@@ -49,6 +50,12 @@ export default function CheckPassword({}: Props) {
   const userSchema = Yup.object({
     password: Yup.string().required('Password is required'),
   });
+
+  const isLoggedIn = getCookie('isLoggedIn');
+
+  if (!isLoggedIn) {
+    return <Login />;
+  }
 
   return (
     <section className={styles['change--password__page']}>

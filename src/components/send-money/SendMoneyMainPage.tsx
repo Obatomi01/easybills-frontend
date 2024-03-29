@@ -20,6 +20,11 @@ import Close from '@/../public/icon/menu-close.png';
 import TransferCheck from './TransferCheck';
 import { useClientIsLoggedIn } from '../clientSideAuth';
 
+import { getCookie } from 'cookies-next';
+
+import Login from '@/app/login/page';
+import LoginPage from '../login/LoginPage';
+
 type Props = {
   bankDetails: any;
   bankNames: any;
@@ -27,7 +32,7 @@ type Props = {
 
 export default function SendMoneyMainPage({ bankDetails, bankNames }: Props) {
   const router = useRouter();
-  useClientIsLoggedIn();
+  const isLoggedIn = getCookie('isLoggedIn');
 
   const [banks, setBanks] = useState(bankNames);
   const [chosenBank, setChosenBank] = useState('Select Option');
@@ -61,6 +66,11 @@ export default function SendMoneyMainPage({ bankDetails, bankNames }: Props) {
   useEffect(() => {
     setAccountName(data?.data);
   }, [data]);
+
+  if (!isLoggedIn) {
+    // router.push('/login');
+    return <LoginPage />;
+  }
 
   const validationSchema = Yup.object({
     accountName: Yup.string(),

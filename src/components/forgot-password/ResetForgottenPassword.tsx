@@ -20,6 +20,8 @@ import Spinner from '@/../public/icon/spinner.png';
 import DashboardMenu from '../general/DashboardMenu';
 import { useClientIsLoggedIn } from '../clientSideAuth';
 
+import { getCookie } from 'cookies-next';
+
 type Props = {
   changePassword?: boolean;
   changePin?: boolean;
@@ -33,6 +35,7 @@ type FormFeedback = {
 
 export default function ResetForgottenPassword({ changePassword }: Props) {
   const router = useRouter();
+  const isLoggedIn = getCookie('isLoggedIn');
 
   const searchParams = useSearchParams();
   const token = searchParams.get('token');
@@ -69,6 +72,15 @@ export default function ResetForgottenPassword({ changePassword }: Props) {
     ok: false,
     showFeedback: false,
   });
+
+  if (!isLoggedIn) {
+    router.push('/login');
+    return (
+      <div>
+        <p>Unauthenticated User</p>
+      </div>
+    );
+  }
 
   const passwordSchema = Yup.object({
     password: Yup.string()

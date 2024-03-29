@@ -1,3 +1,4 @@
+import AuthUser from '@/components/AuthUser';
 import MainTransactionHistoryPage from '@/components/transaction-history/MainTransactionHistoryPage';
 import React from 'react';
 

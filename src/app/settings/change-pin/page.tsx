@@ -1,3 +1,4 @@
+import AuthUser from '@/components/AuthUser';
 import React from 'react';
 
 type Props = {};

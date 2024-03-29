@@ -3,6 +3,10 @@
 import React from 'react';
 import DashboardMenu from '../general/DashboardMenu';
 
+import { getCookie } from 'cookies-next';
+
+import { useRouter } from 'next/navigation';
+
 import styles from '@/styles/airtime-and-data.module.scss';
 import AirtimeOptions from './AirtimeOptions';
 import AirtimeForm from './AirtimeForm';
@@ -10,6 +14,18 @@ import AirtimeForm from './AirtimeForm';
 type Props = {};
 
 export default function AirtimeMainPage({}: Props) {
+  const router = useRouter();
+  const isLoggedIn = getCookie('isLoggedIn');
+
+  if (!isLoggedIn) {
+    // router.push('/login');
+    return (
+      <div>
+        <p>Unauthenticated User</p>
+      </div>
+    );
+  }
+
   return (
     <section className={styles['page--container']}>
       <DashboardMenu />
