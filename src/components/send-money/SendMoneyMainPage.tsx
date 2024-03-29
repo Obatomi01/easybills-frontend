@@ -32,7 +32,6 @@ type Props = {
 
 export default function SendMoneyMainPage({ bankDetails, bankNames }: Props) {
   const router = useRouter();
-  const isLoggedIn = getCookie('isLoggedIn');
 
   const [banks, setBanks] = useState(bankNames);
   const [chosenBank, setChosenBank] = useState('Select Option');
@@ -67,10 +66,7 @@ export default function SendMoneyMainPage({ bankDetails, bankNames }: Props) {
     setAccountName(data?.data);
   }, [data]);
 
-  if (!isLoggedIn) {
-    // router.push('/login');
-    return <LoginPage />;
-  }
+  useClientIsLoggedIn();
 
   const validationSchema = Yup.object({
     accountName: Yup.string(),

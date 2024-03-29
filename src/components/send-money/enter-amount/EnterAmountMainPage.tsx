@@ -25,13 +25,6 @@ export default function EnterAmountMainPage({}: Props) {
   const searchParams = useSearchParams();
   useClientIsLoggedIn();
 
-  const router = useRouter();
-  const isLoggedIn = getCookie('isLoggedIn');
-
-  if (!isLoggedIn) {
-    return <Login />;
-  }
-
   const bank = searchParams.get('bank');
   const accountNumber = searchParams.get('accountNumber');
   const accountName = searchParams.get('accountName');

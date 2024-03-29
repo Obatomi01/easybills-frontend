@@ -45,13 +45,6 @@ const settingsOptions: SettingOptions[] = [
 export default function SettingsMainPage({}: Props) {
   useClientIsLoggedIn();
 
-  const router = useRouter();
-  const isLoggedIn = getCookie('isLoggedIn');
-
-  if (!isLoggedIn) {
-    return <LoginPage />;
-  }
-
   return (
     <section className={styles['settings__container']}>
       <DashboardMenu />

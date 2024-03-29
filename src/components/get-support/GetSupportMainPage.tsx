@@ -57,18 +57,7 @@ const supportOptions: SupportOptions[] = [
 ];
 
 export default function GetSupportMainPage({}: Props) {
-  const router = useRouter();
-  const isLoggedIn = getCookie('isLoggedIn');
   useClientIsLoggedIn();
-
-  if (!isLoggedIn) {
-    // router.push('/login');
-    return (
-      <div>
-        <p>Unauthenticated User</p>
-      </div>
-    );
-  }
 
   return (
     <section className={styles['get--support__container']}>

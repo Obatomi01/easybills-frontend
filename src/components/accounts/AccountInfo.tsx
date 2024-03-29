@@ -15,17 +15,7 @@ import { useClientIsLoggedIn } from '../clientSideAuth';
 type Props = {};
 
 export default function AccountInfo({}: Props) {
-  const router = useRouter();
-  const isLoggedIn = getCookie('isLoggedIn');
-
-  if (!isLoggedIn) {
-    // router.push('/login');
-    return (
-      <div>
-        <p>Unauthenticated User</p>
-      </div>
-    );
-  }
+  useClientIsLoggedIn();
 
   return (
     <section className={styles['account--info__container']}>

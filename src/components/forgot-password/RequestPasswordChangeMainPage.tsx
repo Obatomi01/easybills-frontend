@@ -29,9 +29,6 @@ type FormFeedback = {
 };
 
 export default function RequestPasswordChangeMainPage({}: Props) {
-  const router = useRouter();
-  const isLoggedIn = getCookie('isLoggedIn');
-
   const [formFeedback, setFormFeedback] = useState<FormFeedback>({
     message: '',
     ok: false,
@@ -39,10 +36,7 @@ export default function RequestPasswordChangeMainPage({}: Props) {
   });
   const [isPending, startTransition] = useTransition();
 
-  if (!isLoggedIn) {
-    // router.push('/login');
-    return <LoginPage />;
-  }
+  useClientIsLoggedIn();
 
   const userSchema = Yup.object({
     email: Yup.string().email().required('Email is required'),

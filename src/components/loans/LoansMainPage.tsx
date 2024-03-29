@@ -14,12 +14,7 @@ import LoginPage from '../login/LoginPage';
 type Props = {};
 
 export default function LoansMainPage({}: Props) {
-  const router = useRouter();
-  const isLoggedIn = getCookie('isLoggedIn');
-
-  if (!isLoggedIn) {
-    return <LoginPage />;
-  }
+  useClientIsLoggedIn();
 
   return (
     <section className={styles['loans--page__container']}>

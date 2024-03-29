@@ -45,12 +45,7 @@ const newAccountOptions: NewAccountOptions[] = [
 
 export default function NewAccountMainPage({}: Props) {
   const router = useRouter();
-  const isLoggedIn = getCookie('isLoggedIn');
-
-  if (!isLoggedIn) {
-    // router.push('/login');
-    return <LoginPage />;
-  }
+  useClientIsLoggedIn();
 
   return (
     <section className={styles['new--account__container']}>

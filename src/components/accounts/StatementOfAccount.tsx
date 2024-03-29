@@ -7,21 +7,12 @@ import { useRouter } from 'next/navigation';
 
 import styles from '@/styles/statement-of-account.module.scss';
 import DashboardMenu from '../general/DashboardMenu';
+import { useClientIsLoggedIn } from '../clientSideAuth';
 
 type Props = {};
 
 export default function StatementOfAccount({}: Props) {
-  const router = useRouter();
-  const isLoggedIn = getCookie('isLoggedIn');
-
-  if (!isLoggedIn) {
-    // router.push('/login');
-    return (
-      <div>
-        <p>Unauthenticated User</p>
-      </div>
-    );
-  }
+  useClientIsLoggedIn();
 
   return (
     <section className={styles['statements--page__container']}>

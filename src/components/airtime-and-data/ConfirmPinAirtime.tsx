@@ -21,20 +21,11 @@ type Props = {};
 
 export default function ConfirmPinAirtime({}: Props) {
   const router = useRouter();
-  const isLoggedIn = getCookie('isLoggedIn');
+  useClientIsLoggedIn();
 
   const [pin, setPin] = useState('');
 
   const searchParams = useSearchParams();
-
-  if (!isLoggedIn) {
-    // router.push('/login');
-    return (
-      <div>
-        <p>Unauthenticated User</p>
-      </div>
-    );
-  }
 
   const phoneNumber = searchParams.get('phoneNumber');
   const amount = searchParams.get('amount');

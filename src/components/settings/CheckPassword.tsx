@@ -51,12 +51,6 @@ export default function CheckPassword({}: Props) {
     password: Yup.string().required('Password is required'),
   });
 
-  const isLoggedIn = getCookie('isLoggedIn');
-
-  if (!isLoggedIn) {
-    return <Login />;
-  }
-
   return (
     <section className={styles['change--password__page']}>
       <DashboardMenu />

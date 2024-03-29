@@ -10,21 +10,12 @@ import { useRouter } from 'next/navigation';
 import styles from '@/styles/airtime-and-data.module.scss';
 import AirtimeOptions from './AirtimeOptions';
 import AirtimeForm from './AirtimeForm';
+import { useClientIsLoggedIn } from '../clientSideAuth';
 
 type Props = {};
 
 export default function AirtimeMainPage({}: Props) {
-  const router = useRouter();
-  const isLoggedIn = getCookie('isLoggedIn');
-
-  if (!isLoggedIn) {
-    // router.push('/login');
-    return (
-      <div>
-        <p>Unauthenticated User</p>
-      </div>
-    );
-  }
+  useClientIsLoggedIn();
 
   return (
     <section className={styles['page--container']}>

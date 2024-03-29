@@ -23,12 +23,6 @@ export default function ConfirmPinMoneyTransfer({}: Props) {
   const searchParams = useSearchParams();
   useClientIsLoggedIn();
 
-  const isLoggedIn = getCookie('isLoggedIn');
-
-  if (!isLoggedIn) {
-    return <Login />;
-  }
-
   const amount = searchParams.get('amount');
 
   return (

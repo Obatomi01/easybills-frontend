@@ -18,13 +18,6 @@ type Props = {};
 export default function GoalsMainPage({}: Props) {
   useClientIsLoggedIn();
 
-  const router = useRouter();
-  const isLoggedIn = getCookie('isLoggedIn');
-
-  if (!isLoggedIn) {
-    return <LoginPage />;
-  }
-
   return (
     <section className={styles['target--page__container']}>
       <DashboardMenu />

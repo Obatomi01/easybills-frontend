@@ -35,7 +35,6 @@ type FormFeedback = {
 
 export default function ResetForgottenPassword({ changePassword }: Props) {
   const router = useRouter();
-  const isLoggedIn = getCookie('isLoggedIn');
 
   const searchParams = useSearchParams();
   const token = searchParams.get('token');
@@ -73,14 +72,7 @@ export default function ResetForgottenPassword({ changePassword }: Props) {
     showFeedback: false,
   });
 
-  if (!isLoggedIn) {
-    router.push('/login');
-    return (
-      <div>
-        <p>Unauthenticated User</p>
-      </div>
-    );
-  }
+  useClientIsLoggedIn();
 
   const passwordSchema = Yup.object({
     password: Yup.string()

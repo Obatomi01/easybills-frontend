@@ -15,13 +15,6 @@ type Props = {};
 export default function ChangePassword({}: Props) {
   useClientIsLoggedIn();
 
-  const router = useRouter();
-  const isLoggedIn = getCookie('isLoggedIn');
-
-  if (!isLoggedIn) {
-    return <LoginPage />;
-  }
-
   return (
     <div>
       <ResetForgottenPassword changePassword={true} />
