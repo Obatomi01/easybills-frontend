@@ -36,9 +36,10 @@ export default function ResetForgottenPassword({ changePassword }: Props) {
 
   const searchParams = useSearchParams();
   const token = searchParams.get('token');
+  const pin = searchParams.get('pin');
 
   if (!token) {
-    router.prefetch('/settings');
+    router.replace('/settings');
   }
 
   const fetcher = async () => {
@@ -69,7 +70,7 @@ export default function ResetForgottenPassword({ changePassword }: Props) {
     showFeedback: false,
   });
 
-  const userSchema = Yup.object({
+  const passwordSchema = Yup.object({
     password: Yup.string()
       .required('Password is required')
       .min(8, 'Password must be at least 8 characters')
@@ -85,6 +86,21 @@ export default function ResetForgottenPassword({ changePassword }: Props) {
   });
 
   // TODO: add another schema for when it is a request to reset the user's pin
+  const pinSchema = Yup.object({
+    pin: Yup.string()
+      .required('Pin is required')
+      .length(4, 'Password must be exactly 4 characters'),
+
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref('pin'), undefined], 'Pins must match')
+      .required('Confirm Pin is required'),
+  });
+
+  const numberChangeHandler = (event: any) => {
+    const numericValue = event.target.value.replace(/\D/g, '');
+
+    // return setPassword(numericValue);
+  };
 
   return (
     <section className={changePassword ? styles['change--password__page'] : ''}>
@@ -96,7 +112,9 @@ export default function ResetForgottenPassword({ changePassword }: Props) {
             : styles['forgot-password__container']
         }
       >
-        <h3 className='text-4xl font-semibold text-center'>Reset Password</h3>
+        <h3 className='text-4xl font-semibold text-center'>
+          Reset {!pin ? 'Password' : 'Pin'}
+        </h3>
 
         {formFeedback.showFeedback && (
           <h3
@@ -113,7 +131,7 @@ export default function ResetForgottenPassword({ changePassword }: Props) {
             password: '',
             confirmPassword: '',
           }}
-          validationSchema={userSchema}
+          validationSchema={pin ? pinSchema : passwordSchema}
           onSubmit={(values) => {
             try {
               startTransition(async () => {
@@ -167,14 +185,25 @@ export default function ResetForgottenPassword({ changePassword }: Props) {
         >
           {() => (
             <Form>
-              <FormEntryContainer
-                title='New Password'
-                placeholderTitle='Enter new password'
-                fieldName='password'
-                password={showPassword}
-                onShowPassword={() => setShowPassword(!showPassword)}
-                passwordField={true}
-              />
+              {pin ? (
+                <FormEntryContainer
+                  title='New Password'
+                  placeholderTitle='Enter new password'
+                  fieldName='password'
+                  password={showPassword}
+                  onShowPassword={() => setShowPassword(!showPassword)}
+                  passwordField={true}
+                />
+              ) : (
+                <FormEntryContainer
+                  title='New Pin'
+                  placeholderTitle='Enter new pin'
+                  fieldName='pin'
+                  password={showPassword}
+                  onShowPassword={() => setShowPassword(!showPassword)}
+                  passwordField={true}
+                />
+              )}
               <FormEntryContainer
                 title='Confirm New Password'
                 placeholderTitle='Confirm new password'

@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { getCookie } from 'cookies-next';
 
 import { useState, useTransition, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 import styles from '@/styles/forgot-password.module.scss';
 
@@ -39,6 +40,9 @@ export default function CheckPassword({}: Props) {
   const [showPassword, setShowPassword] = useState(false);
 
   const [isPending, startTransition] = useTransition();
+
+  const searchParams = useSearchParams();
+  const pin = searchParams.get('pin');
 
   const token = getCookie('token');
 
@@ -99,7 +103,15 @@ export default function CheckPassword({}: Props) {
 
                   // TODO: check if it is to reset the pin by checking if there is a query of 'pin'
 
-                  router.push(`/settings/change-password?token=${data.token}`);
+                  if (pin) {
+                    router.push(
+                      `/settings/change-password?token=${data.token}&pin=true`
+                    );
+                  } else {
+                    router.push(
+                      `/settings/change-password?token=${data.token}`
+                    );
+                  }
                 } else {
                   setFormFeedback({
                     message: 'Incorrect Password',

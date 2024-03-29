@@ -41,7 +41,9 @@ export default function TransferDetailsContainer({
         amount: Yup.string().required('Amount is required'),
       })
     : Yup.object({
-        pin: Yup.string().required('Pin is required'),
+        pin: Yup.string()
+          .required('Pin is required')
+          .length(4, 'Password must be exactly 4 characters'),
       });
 
   const initialValues = confirmPin
