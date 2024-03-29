@@ -172,7 +172,7 @@ export default function DashboardMenu({}: Props) {
                 router.refresh();
 
                 setTimeout(() => {
-                  router.push('/login');
+                  router.replace('/login');
                 }, 2000);
               }}
             >
