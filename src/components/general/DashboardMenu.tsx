@@ -168,12 +168,12 @@ export default function DashboardMenu({}: Props) {
 
                 setShowNavBar(false);
 
-                // window.location.reload();
-                router.refresh();
+                window.location.reload();
+                // router.refresh();
 
                 setTimeout(() => {
                   router.replace('/login');
-                }, 2000);
+                }, 3000);
               }}
             >
               <span className={styles['image--container']}>

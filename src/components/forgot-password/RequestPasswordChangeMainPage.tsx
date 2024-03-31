@@ -36,7 +36,7 @@ export default function RequestPasswordChangeMainPage({}: Props) {
   });
   const [isPending, startTransition] = useTransition();
 
-  useClientIsLoggedIn();
+  // useClientIsLoggedIn();
 
   const userSchema = Yup.object({
     email: Yup.string().email().required('Email is required'),
@@ -101,7 +101,7 @@ export default function RequestPasswordChangeMainPage({}: Props) {
                   });
                 } else {
                   setFormFeedback({
-                    message: 'Message not sent',
+                    message: data.message,
                     ok: false,
                     showFeedback: true,
                   });
