@@ -13,7 +13,7 @@ import styles from '@/styles/forgot-password.module.scss';
 import SignUpHeader from '../general/SignUpHeader';
 
 import * as Yup from 'yup';
-import { Formik, Form } from 'formik';
+import { Formik, Form, ErrorMessage } from 'formik';
 import FormEntryContainer from '../general/FormEntryContainer';
 
 import Spinner from '@/../public/icon/spinner.png';
@@ -38,7 +38,10 @@ export default function ResetForgottenPassword({ changePassword }: Props) {
 
   const searchParams = useSearchParams();
   const token = searchParams.get('token');
-  const pin = searchParams.get('pin');
+  const isPin = searchParams.get('pin');
+
+  const [pin, setPin] = useState('');
+  const [confirmPin, setConfirmPin] = useState('');
 
   if (!token) {
     router.replace('/settings');
@@ -93,17 +96,17 @@ export default function ResetForgottenPassword({ changePassword }: Props) {
   const pinSchema = Yup.object({
     pin: Yup.string()
       .required('Pin is required')
-      .length(4, 'Password must be exactly 4 characters'),
+      .length(4, 'Pin must be exactly 4 characters'),
 
-    confirmPassword: Yup.string()
+    confirmPin: Yup.string()
       .oneOf([Yup.ref('pin'), undefined], 'Pins must match')
       .required('Confirm Pin is required'),
   });
 
-  const numberChangeHandler = (event: any) => {
+  const numberChangeHandler = (event: any, setFunction: any) => {
     const numericValue = event.target.value.replace(/\D/g, '');
 
-    // return setPassword(numericValue);
+    return setFunction(numericValue);
   };
 
   return (
@@ -117,7 +120,7 @@ export default function ResetForgottenPassword({ changePassword }: Props) {
         }
       >
         <h3 className='text-4xl font-semibold text-center'>
-          Reset {!pin ? 'Password' : 'Pin'}
+          Reset {!isPin ? 'Password' : 'Pin'}
         </h3>
 
         {formFeedback.showFeedback && (
@@ -131,35 +134,47 @@ export default function ResetForgottenPassword({ changePassword }: Props) {
         )}
 
         <Formik
-          initialValues={{
-            password: '',
-            confirmPassword: '',
-          }}
-          validationSchema={pin ? pinSchema : passwordSchema}
+          initialValues={
+            isPin
+              ? {
+                  pin: '',
+                  confirmPin: '',
+                }
+              : {
+                  password: '',
+                  confirmPassword: '',
+                }
+          }
+          validationSchema={isPin ? pinSchema : passwordSchema}
           onSubmit={(values) => {
             try {
               startTransition(async () => {
-                const { password } = values;
+                const { password, pin } = values;
                 setFormFeedback({
                   message: '',
                   ok: false,
                   showFeedback: false,
                 });
 
-                const response = await fetch(
-                  `${process.env.NEXT_PUBLIC_USER_API_LINK}/reset-forgotten-password`,
-                  {
-                    method: 'POST',
-                    headers: {
-                      'Content-Type': 'application/json',
-                      Authorization: `Bearer ${token}`,
-                    },
-                    cache: 'no-store',
-                    body: JSON.stringify({
-                      password,
-                    }),
-                  }
-                );
+                const url = isPin
+                  ? `${process.env.NEXT_PUBLIC_USER_API_LINK}/reset-pin`
+                  : `${process.env.NEXT_PUBLIC_USER_API_LINK}/reset-forgotten-password`;
+
+                const response = await fetch(`${url}`, {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                  },
+                  cache: 'no-store',
+                  body: JSON.stringify(
+                    isPin
+                      ? { pin }
+                      : {
+                          password,
+                        }
+                  ),
+                });
 
                 const data = await response.json();
                 if (data.ok) {
@@ -187,9 +202,9 @@ export default function ResetForgottenPassword({ changePassword }: Props) {
             }
           }}
         >
-          {() => (
+          {(props) => (
             <Form>
-              {pin ? (
+              {!isPin ? (
                 <FormEntryContainer
                   title='New Password'
                   placeholderTitle='Enter new password'
@@ -199,25 +214,66 @@ export default function ResetForgottenPassword({ changePassword }: Props) {
                   passwordField={true}
                 />
               ) : (
+                <div className={styles['pin--entry__container']}>
+                  <p className='text-2xl font-semibold'>New pin</p>
+                  <input
+                    name='pin'
+                    type='text'
+                    inputMode='numeric'
+                    maxLength={4}
+                    onChange={(event: any) => {
+                      numberChangeHandler(event, setPin);
+                      props.setFieldValue(
+                        'pin',
+                        event.target.value.replace(/\D/g, '')
+                      );
+                    }}
+                    value={pin}
+                    placeholder='Confirm pin'
+                  />
+                  <ErrorMessage
+                    name={'pin'}
+                    className={styles['error--message']}
+                    component='p'
+                  />
+                </div>
+              )}
+              {isPin ? (
+                <div className={styles['pin--entry__container']}>
+                  <p className='text-2xl font-semibold'>Confirm pin</p>
+                  <input
+                    name='pin'
+                    type='text'
+                    inputMode='numeric'
+                    maxLength={4}
+                    onChange={(event: any) => {
+                      numberChangeHandler(event, setConfirmPin);
+                      props.setFieldValue(
+                        'confirmPin',
+                        event.target.value.replace(/\D/g, '')
+                      );
+                    }}
+                    placeholder='Confirm new pin'
+                    value={confirmPin}
+                  />
+                  <ErrorMessage
+                    name={'confirmPin'}
+                    className={styles['error--message']}
+                    component='p'
+                  />
+                </div>
+              ) : (
                 <FormEntryContainer
-                  title='New Pin'
-                  placeholderTitle='Enter new pin'
-                  fieldName='pin'
-                  password={showPassword}
-                  onShowPassword={() => setShowPassword(!showPassword)}
+                  title='Confirm New Password'
+                  placeholderTitle='Confirm new password'
+                  fieldName='confirmPassword'
+                  password={showConfirmPassword}
+                  onShowPassword={() =>
+                    setShowConfirmPassword(!showConfirmPassword)
+                  }
                   passwordField={true}
                 />
               )}
-              <FormEntryContainer
-                title='Confirm New Password'
-                placeholderTitle='Confirm new password'
-                fieldName='confirmPassword'
-                password={showConfirmPassword}
-                onShowPassword={() =>
-                  setShowConfirmPassword(!showConfirmPassword)
-                }
-                passwordField={true}
-              />
               <button
                 className={`${styles['signup--btn']} w-full`}
                 type='submit'

@@ -9,14 +9,18 @@ import AuthUser from '@/components/AuthUser';
 type Props = {};
 
 const userDetails = async () => {
-  const token = cookies().get('token');
+  try {
+    const token = cookies().get('token');
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_USER_API_LINK}/get-user-details/${token?.value}`
-  );
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_USER_API_LINK}/get-user-details/${token?.value}`
+    );
 
-  const data = await res.json();
-  return data;
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    redirect('/login');
+  }
 };
 
 export default async function Dashboard({}: Props) {

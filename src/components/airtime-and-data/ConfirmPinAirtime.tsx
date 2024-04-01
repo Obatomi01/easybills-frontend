@@ -24,8 +24,13 @@ export default function ConfirmPinAirtime({}: Props) {
   useClientIsLoggedIn();
 
   const [pin, setPin] = useState('');
+  const [formFeedback, setFormFeedback] = useState({
+    message: 'Invalid Pin',
+    showFeedback: false,
+  });
 
   const searchParams = useSearchParams();
+  const token = getCookie('token');
 
   const phoneNumber = searchParams.get('phoneNumber');
   const amount = searchParams.get('amount');
@@ -60,8 +65,40 @@ export default function ConfirmPinAirtime({}: Props) {
       </div>
 
       <Formik
-        onSubmit={() => {
-          router.push('/success');
+        onSubmit={async (values) => {
+          try {
+            setFormFeedback({
+              showFeedback: false,
+              message: '',
+            });
+            const enteredPin = values.pin;
+            const response = await fetch(
+              `${process.env.NEXT_PUBLIC_USER_API_LINK}/confirm-pin`,
+              {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: `Bearer ${token}`,
+                },
+                cache: 'no-store',
+                body: JSON.stringify({ pin: enteredPin }),
+              }
+            );
+
+            const data = await response.json();
+
+            if (data.ok) {
+              router.push('/success');
+            } else {
+              setFormFeedback({
+                message: data.message,
+                showFeedback: true,
+              });
+            }
+          } catch (err) {
+            // router.push('/dashboard');
+            console.log(err);
+          }
         }}
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -100,6 +137,11 @@ export default function ConfirmPinAirtime({}: Props) {
               name='pin'
               className='text-2xl text-red-500 mt-2'
             />
+            {formFeedback.showFeedback && (
+              <p className='text-2xl text-red-500 mt-2'>
+                {formFeedback.message}
+              </p>
+            )}
 
             <button className={`${styles['next--btn']} mt-20`} type='submit'>
               <h3 className={`text-3xl text-center`}>Next</h3>

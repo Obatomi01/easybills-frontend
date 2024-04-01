@@ -12,6 +12,8 @@ import styles from '@/styles/enter-amount.module.scss';
 import { useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation';
 
+import { getCookie } from 'cookies-next';
+
 import TransferReceiver from './enter-amount/TransferReceiver';
 
 import TransferSender from './enter-amount/TransferSender';
@@ -28,9 +30,15 @@ export default function TransferDetailsContainer({
   amount,
 }: Props) {
   const [pin, setPin] = useState('');
+  const [formFeedback, setFormFeedback] = useState({
+    message: 'Invalid Pin',
+    showFeedback: false,
+  });
 
   const router = useRouter();
   const searchParams = useSearchParams();
+
+  const token = getCookie('token');
 
   const bank = searchParams.get('bank');
   const accountNumber = searchParams.get('accountNumber');
@@ -81,10 +89,47 @@ export default function TransferDetailsContainer({
       </div>
 
       <Formik
-        onSubmit={(values) => {
-          router.push(
-            confirmPin ? `${linkTo}` : `${linkTo}&amount=${values.amount}`
-          );
+        onSubmit={async (values) => {
+          try {
+            if (confirmPin) {
+              setFormFeedback({
+                showFeedback: false,
+                message: '',
+              });
+              const enteredPin = values.pin;
+              const response = await fetch(
+                `${process.env.NEXT_PUBLIC_USER_API_LINK}/confirm-pin`,
+                {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                  },
+                  cache: 'no-store',
+                  body: JSON.stringify({ pin: enteredPin }),
+                }
+              );
+
+              const data = await response.json();
+
+              if (data.ok) {
+                router.push(`${linkTo}`);
+              } else {
+                setFormFeedback({
+                  message: data.message,
+                  showFeedback: true,
+                });
+
+                return;
+              }
+            }
+
+            router.push(
+              confirmPin ? `${linkTo}` : `${linkTo}&amount=${values.amount}`
+            );
+          } catch (err) {
+            console.log(err);
+          }
         }}
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -147,6 +192,11 @@ export default function TransferDetailsContainer({
                 name='pin'
                 className='text-2xl text-red-500 mt-2'
               />
+            )}
+            {formFeedback.showFeedback && (
+              <p className='text-2xl text-red-500 mt-2'>
+                {formFeedback.message}
+              </p>
             )}
 
             <button className={`${styles['next--btn']} mt-20`} type='submit'>
