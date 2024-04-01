@@ -16,6 +16,7 @@ export function middleware(request: NextRequest) {
     'airtime-and-data',
     'accounts',
     'targets',
+    'success',
   ];
 
   const baseURL = url.pathname.split('/');
