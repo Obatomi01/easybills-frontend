@@ -174,6 +174,10 @@ export default function TransferDetailsContainer({
                   pattern='[0-9]*'
                   maxLength={4}
                   onChange={(event: any) => {
+                    setFormFeedback({
+                      showFeedback: false,
+                      message: '',
+                    });
                     numberChangeHandler(event);
                     props.setFieldValue(
                       'pin',

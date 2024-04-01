@@ -124,6 +124,10 @@ export default function ConfirmPinAirtime({}: Props) {
                 inputMode='numeric'
                 maxLength={4}
                 onChange={(event: any) => {
+                  setFormFeedback({
+                    showFeedback: false,
+                    message: '',
+                  });
                   numberChangeHandler(event);
                   props.setFieldValue(
                     'pin',
