@@ -218,7 +218,7 @@ export default function ResetForgottenPassword({ changePassword }: Props) {
                   <p className='text-2xl font-semibold'>New pin</p>
                   <input
                     name='pin'
-                    type='text'
+                    type='password'
                     inputMode='numeric'
                     maxLength={4}
                     onChange={(event: any) => {
@@ -243,7 +243,7 @@ export default function ResetForgottenPassword({ changePassword }: Props) {
                   <p className='text-2xl font-semibold'>Confirm pin</p>
                   <input
                     name='pin'
-                    type='text'
+                    type='password'
                     inputMode='numeric'
                     maxLength={4}
                     onChange={(event: any) => {

@@ -120,7 +120,7 @@ export default function ConfirmPinAirtime({}: Props) {
 
               <input
                 name='pin'
-                type='text'
+                type='password'
                 inputMode='numeric'
                 maxLength={4}
                 onChange={(event: any) => {

@@ -169,7 +169,7 @@ export default function TransferDetailsContainer({
               {confirmPin ? (
                 <input
                   name='pin'
-                  type='text'
+                  type='password'
                   inputMode='numeric'
                   pattern='[0-9]*'
                   maxLength={4}
